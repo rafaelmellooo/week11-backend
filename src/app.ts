@@ -1,6 +1,5 @@
 import cors from 'cors'
 import express from 'express'
-import mongoose from 'mongoose'
 import routes from './routes'
 
 class App {
@@ -10,19 +9,12 @@ class App {
     this.express = express()
 
     this.middlewares()
-    this.database()
     this.routes()
   }
 
   private middlewares (): void {
     this.express.use(express.json())
     this.express.use(cors())
-  }
-
-  private database (): void {
-    mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack-sefd2.mongodb.net/test?retryWrites=true&w=majority', {
-      useNewUrlParser: true
-    })
   }
 
   private routes (): void {
