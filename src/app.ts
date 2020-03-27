@@ -1,3 +1,4 @@
+import { errors } from 'celebrate'
 import cors from 'cors'
 import express from 'express'
 import routes from './routes'
@@ -10,6 +11,7 @@ class App {
 
     this.middlewares()
     this.routes()
+    this.express.use(errors())
   }
 
   private middlewares (): void {

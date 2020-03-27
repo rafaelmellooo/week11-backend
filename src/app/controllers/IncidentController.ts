@@ -38,13 +38,20 @@ class IncidentController {
 
     const { title, description, value }: BodyInterface = req.body
 
-    const ong_id = req.headers.authorization
+    const ong = await connection('ongs')
+      .select('id')
+      .where('id', req.headers.authorization)
+      .first()
+
+    if (!ong) {
+      return res.status(401).json({ error: 'Operation not permitted.' })
+    }
 
     const [id] = await connection('incidents').insert({
       title,
       description,
       value,
-      ong_id
+      ong_id: ong.id
     })
 
     return res.status(201).json({ id })
