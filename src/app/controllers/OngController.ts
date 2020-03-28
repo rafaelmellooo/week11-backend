@@ -1,6 +1,6 @@
-import crypto from 'crypto'
 import { Request, Response } from 'express'
 import connection from '../../config/database'
+import generateUniqueId from '../../utils/generateUniqueId'
 
 class OngController {
   public async index (req: Request, res: Response): Promise<Response> {
@@ -11,16 +11,16 @@ class OngController {
 
   public async store (req: Request, res: Response): Promise<Response> {
     interface BodyInterface {
-      name: string;
-      email: string;
-      whatsapp: string;
-      city: string;
-      uf: string;
+      name: string
+      email: string
+      whatsapp: string
+      city: string
+      uf: string
     }
 
     const { name, email, whatsapp, city, uf }: BodyInterface = req.body
 
-    const id = crypto.randomBytes(4).toString('HEX')
+    const id = generateUniqueId()
 
     await connection('ongs').insert({
       id,

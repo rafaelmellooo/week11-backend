@@ -1,25 +1,31 @@
 module.exports = {
   env: {
     es6: true,
-    node: true
+    node: true,
+    'jest/globals': true
   },
   extends: [
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "standard"
+    'plugin:@typescript-eslint/recommended',
+    'prettier/@typescript-eslint',
+    'standard'
   ],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: 'module'
   },
-  plugins: ["@typescript-eslint"],
+  plugins: ['@typescript-eslint', 'jest'],
   rules: {
-    camelcase: "off",
-    "@typescript-eslint/camelcase": "off"
+    camelcase: 'off',
+    '@typescript-eslint/camelcase': 'off',
+    'jest/no-disabled-tests': 'warn',
+    'jest/no-focused-tests': 'error',
+    'jest/no-identical-title': 'error',
+    'jest/prefer-to-have-length': 'warn',
+    'jest/valid-expect': 'error'
   }
-};
+}
